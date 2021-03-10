@@ -26,9 +26,6 @@ class Individual:
         fitness = int(round(fitness))
         self.fitness = fitness
 
-<<<<<<< HEAD
-    
-=======
     def Mutate(self, index):
       self.genes[index] = random.choice(Individual.POSSIBLE_GENES)
 
@@ -36,4 +33,11 @@ class Individual:
       for x in range(Individual.GENE_LENGTH):
           self.genes[x] = otherIndividual.genes[x]
       self.fitness = otherIndividual.fitness
->>>>>>> 5d65730c503c4c0529035e971454395738e445a9
+    
+    def PrintGenes(self):
+      count = 0
+      geneOutput = ""
+      for item in self.genes:
+          geneOutput += str(count) + ":" + item + " "
+          count += 1
+      return geneOutput
