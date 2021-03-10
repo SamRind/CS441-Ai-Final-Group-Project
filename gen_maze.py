@@ -50,3 +50,21 @@ class NaturalSelection:
         self.fittest = None
         self.secondFittest = None
         self.genCount = 0
+
+    def MainProcess(self, maze):
+        self.population.CalFitForWholePop(maze)
+        print("Generation: " + str(self.genCount) + " Fittest: " + str(self.population.fittest))
+        while(self.population.fittest < Individual.MAX_FITNESS):
+            self.genCount += 1
+            self.Selection()
+            self.CrossOver()
+            if random.uniform(0, 1) <= self.mutationRate:
+                self.do_Mutation()
+
+            self.AddFittestOffspring(maze)
+            self.population.CalFitForWholePop(maze)
+            print("Generation: " + str(self.genCount) + " Fittest: " + str(self.population.fittest) +
+                  " Genes: " + self.population.Get_Fittest().PrintGenes())
+        print("Solution found in generation " + str(self.genCount))
+        print("Fitness: " + str(self.population.Get_Fittest().fitness))
+        print("Genes: " + self.population.Get_Fittest().PrintGenes())
