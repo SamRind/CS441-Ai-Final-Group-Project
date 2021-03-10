@@ -26,4 +26,14 @@ class Individual:
         fitness = int(round(fitness))
         self.fitness = fitness
 
+<<<<<<< HEAD
     
+=======
+    def Mutate(self, index):
+      self.genes[index] = random.choice(Individual.POSSIBLE_GENES)
+
+    def CopyGenes(self, otherIndividual):
+      for x in range(Individual.GENE_LENGTH):
+          self.genes[x] = otherIndividual.genes[x]
+      self.fitness = otherIndividual.fitness
+>>>>>>> 5d65730c503c4c0529035e971454395738e445a9
