@@ -10,7 +10,7 @@ class Individual:
     
     def __init__(self):
         self.fitness = 0
-        self.gene = []
+        self.genes = []
         for x in range(Individual.GENE_LENGTH):
             self.genes.append(random.choice(Individual.POSSIBLE_GENES))
 
@@ -144,3 +144,69 @@ class Population:
         for indiv in self.individuals:
             maze.RunGenesThroughMaze(indiv)
         self.Get_Fittest()
+
+class Maze:
+    def __init__(self):
+
+        self.maze = [
+            ["_", "_", "#", "#", "_", "#"],
+            ["#", "_", "_", "#", "_", "#"],
+            ["#", "#", "_", "#", "_", "E"],
+            ["#", "_", "_", "_", "_", "#"],
+            ["#", "_", "#", "_", "#", "#"],
+            ["S", "_", "#", "_", "_", "#"]
+        ]
+        self.maxMag = 6.0
+
+        self.startLocation = self.FindCharLocation("S")
+        self.currentLocation = self.startLocation
+        self.endLocation = self.FindCharLocation("E")
+
+    def FindCharLocation(self, targetChar):
+        for x in range(len(self.maze)):
+            for y in range(len(self.maze[x])):
+                if self.maze[x][y] == targetChar:
+                    return [x, y]
+        return None
+
+    def PrintMaze(self):
+        for x in self.maze:
+            row = ""
+            for y in x:
+                row += y
+                row += " "
+            print(row)
+
+    
+    def RunGenesThroughMaze(self, individual):
+        self.currentLocation = self.startLocation
+        for aGene in individual.genes:
+            possibleMove = None
+            if aGene == "N":
+                possibleMove = [self.currentLocation[0] - 1, self.currentLocation[1]]
+            elif aGene == "E":
+                possibleMove = [self.currentLocation[0], self.currentLocation[1] + 1]
+            elif aGene == "S":
+                possibleMove = [self.currentLocation[0] + 1, self.currentLocation[1]]
+            elif aGene == "W":
+                possibleMove = [self.currentLocation[0], self.currentLocation[1] - 1]
+            else:
+                print("Warning! Invalid gene detected: " + aGene)
+
+            if self.CheckForVaildMove(possibleMove):
+                self.currentLocation = possibleMove
+            else:
+                individual.Fitness(self.currentLocation, self.endLocation, self.maxMag)
+                break
+
+    def CheckForVaildMove(self, posibleMove):
+        if (posibleMove[0] >= 0 and posibleMove[0] < len(self.maze) and
+                posibleMove[1] >= 0 and posibleMove[1] < len(self.maze[0])):
+            if self.maze[posibleMove[0]][posibleMove[1]] != "#":
+                return True
+        return False
+
+if __name__ == "__main__":
+    NS = NaturalSelection(0.05)
+    aMaze = Maze()
+    NS.MainProcess(aMaze)
