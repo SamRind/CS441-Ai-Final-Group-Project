@@ -25,3 +25,5 @@ class Individual:
         fitness = Individual.MAX_FITNESS * fitMod
         fitness = int(round(fitness))
         self.fitness = fitness
+
+    
