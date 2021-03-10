@@ -87,3 +87,15 @@ class NaturalSelection:
         self.fittest.Mutate(mutationPoint)
         mutationPoint = random.randint(0, Individual.GENE_LENGTH - 1)
         self.secondFittest.Mutate(mutationPoint)
+
+    def FindFittestOffspring(self):
+        if self.fittest.fitness > self.secondFittest.fitness:
+            return self.fittest
+        return self.secondFittest
+
+    
+    def AddFittestOffspring(self, maze):
+        maze.RunGenesThroughMaze(self.fittest)
+        maze.RunGenesThroughMaze(self.secondFittest)
+        leastFit = self.population.FindLeastFittest()
+        leastFit.CopyGenes(self.FindFittestOffspring())
