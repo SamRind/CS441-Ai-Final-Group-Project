@@ -41,3 +41,12 @@ class Individual:
           geneOutput += str(count) + ":" + item + " "
           count += 1
       return geneOutput
+
+class NaturalSelection:
+    def __init__(self, mutationRate):
+
+        self.population = Population(10)
+        self.mutationRate = mutationRate
+        self.fittest = None
+        self.secondFittest = None
+        self.genCount = 0
