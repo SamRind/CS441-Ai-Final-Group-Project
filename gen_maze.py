@@ -68,3 +68,22 @@ class NaturalSelection:
         print("Solution found in generation " + str(self.genCount))
         print("Fitness: " + str(self.population.Get_Fittest().fitness))
         print("Genes: " + self.population.Get_Fittest().PrintGenes())
+
+    #Picks the two fittest individuals for the cross over process.
+    def Selection(self):
+        self.fittest = self.population.Get_Fittest()
+        self.secondFittest = self.population.FindTheSecoundFittest()
+
+    def CrossOver(self):
+        crossPoint = random.randint(0, Individual.GENE_LENGTH - 1)
+        for i in range(crossPoint):
+            temp = self.fittest.genes[i]
+            self.fittest.genes[i] = self.secondFittest.genes[i]
+            self.secondFittest.genes[i] = temp
+
+    
+    def do_Mutation(self):
+        mutationPoint = random.randint(0, Individual.GENE_LENGTH - 1)
+        self.fittest.Mutate(mutationPoint)
+        mutationPoint = random.randint(0, Individual.GENE_LENGTH - 1)
+        self.secondFittest.Mutate(mutationPoint)
