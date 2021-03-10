@@ -2,12 +2,12 @@
 import random 
 import math
 
-MAX_FITNESS = 100
-POSSIBLE_GENES = ["N", "E", "S", "W"]
-GENE_LENGTH = 9
 
 class Individual:
-
+    MAX_FITNESS = 100
+    POSSIBLE_GENES = ["N", "E", "S", "W"]
+    GENE_LENGTH = 9
+    
     def __init__(self):
         self.fitness = 0
         self.gene = []
