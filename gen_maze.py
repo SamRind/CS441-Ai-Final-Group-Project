@@ -26,6 +26,14 @@ class Individual:
         fitness = int(round(fitness))
         self.fitness = fitness
 
+    def Fitness2(self, curLoc, endLoc, maxMag):
+        x = curLoc[0] - endLoc[0]
+        y = curLoc[1] - endLoc[1]
+        fitness = Individual.MAX_FITNESS - (abs(x)+abs(y))
+        fitness = int(round(fitness))
+        self.fitness = fitness
+
+
     def Mutate(self, index):
       self.genes[index] = random.choice(Individual.POSSIBLE_GENES)
 
@@ -54,7 +62,7 @@ class NaturalSelection:
     def MainProcess(self, maze):
         self.population.CalFitForWholePop(maze)
         print("Generation: " + str(self.genCount) + " Fittest: " + str(self.population.fittest))
-        while(self.population.fittest < Individual.MAX_FITNESS and self.genCount <= 1000000):
+        while(self.population.fittest < Individual.MAX_FITNESS and self.genCount <= 100000):
             self.genCount += 1
             self.Selection()
             self.CrossOver()
@@ -65,12 +73,14 @@ class NaturalSelection:
             self.population.CalFitForWholePop(maze)
             print("Generation: " + str(self.genCount) + " Fittest: " + str(self.population.fittest) +
                   " Genes: " + self.population.Get_Fittest().PrintGenes())
-        if (self.genCount > 1000000):
-            print("Solution not found within 1000000 generations. Terminating program\n")
+        if (self.genCount > 100000):
+            print("Solution not found within 100000 generations. Terminating program\n")
+            return 100000
         else:
             print("Solution found in generation " + str(self.genCount))
             print("Fitness: " + str(self.population.Get_Fittest().fitness))
             print("Genes: " + self.population.Get_Fittest().PrintGenes())
+            return self.genCount
 
     #Picks the two fittest individuals for the cross over process.
     def Selection(self):
@@ -90,6 +100,13 @@ class NaturalSelection:
         self.fittest.Mutate(mutationPoint)
         mutationPoint = random.randint(0, Individual.GENE_LENGTH - 1)
         self.secondFittest.Mutate(mutationPoint)
+
+    def do_Mutation2(self):
+        for index in range(Individual.GENE_LENGTH):
+            if((index + random.randint(0,8))>8):
+                self.fittest.Mutate(index)
+                self.secondFittest.Mutate(index)
+
 
     def FindFittestOffspring(self):
         if self.fittest.fitness > self.secondFittest.fitness:
@@ -209,7 +226,16 @@ class Maze:
                 return True
         return False
 
+
 if __name__ == "__main__":
     NS = NaturalSelection(0.05)
     aMaze = Maze()
     NS.MainProcess(aMaze)
+    '''avg = 0
+    for x in range(10):
+        NS = NaturalSelection(0.05)
+        avg += NS.MainProcess(aMaze)
+    avg = avg/10
+    print("Solution was found in this Avg # of Generations: ")
+    print(avg)
+    print("\n")'''
