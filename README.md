@@ -3,7 +3,7 @@ CS441/541 Artificial Intelligence: A Maze Solver
 
 Developers: Charlene Namuyige, Leah Moser, Natasha Needham, Salem Alathari, Sam Rind 
 
-# Brief Description: 
+# Brief Description
 A maze is a network of paths designed as a puzzle where an agent would need to find the specific path that leads to the exit. This maze solver is intended to find a route from start to finish in this maze. 
 There exists a number of algorithms that can generate and solve a maze solver in artificial intelligence. 
 
@@ -14,3 +14,8 @@ A genetic algorithm is a search heuristic that is inspired by Charles Darwin's t
 * Selection: The selection phase is to select the fittest individuals and let them pass their genes on to the next generation. Individuals with the highest fitness scores tend to be selected for reproduction.  
 * Crossover: Crossover is the phase of the genetic algorithm where for each pair of the parents to be mated, a crossover point is chosen at random from within the genes. 
 * Mutation: During reproduction, some of the genes might be subjected to a mutation with low random probability. Mutation occurs to prevent premature convergence. 
+
+# How to run program 
+  To run this program, simply compile and run in a python environment. 
+  
+# Conclusion 
