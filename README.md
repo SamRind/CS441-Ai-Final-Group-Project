@@ -18,4 +18,5 @@ A genetic algorithm is a search heuristic that is inspired by Charles Darwin's t
 # How to run program 
   To run this program, simply compile and run in a python environment. 
   
-# Conclusion 
+# RL Algorithm
+
