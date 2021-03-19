@@ -15,7 +15,7 @@ A genetic algorithm is a search heuristic that is inspired by Charles Darwin's t
 * Crossover: Crossover is the phase of the genetic algorithm where for each pair of the parents to be mated, a crossover point is chosen at random from within the genes. 
 * Mutation: During reproduction, some of the genes might be subjected to a mutation with low random probability. Mutation occurs to prevent premature convergence. 
 
-# How to run program 
+# How to run GA program 
   To run this program, simply compile and run in a python environment. 
   
 # RL Algorithm
