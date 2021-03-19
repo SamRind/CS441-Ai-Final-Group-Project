@@ -22,3 +22,8 @@ A genetic algorithm is a search heuristic that is inspired by Charles Darwin's t
 Our reinforcement learning algorithm initially has all actions at a value of zero. As the training goes on, the value for a given move is updated based on the reward gained after it occurred. Training ends after a fixed number of mazes, or if a 100% win rate is achieved. The algorithm explores the maze less as training goes on in order to narrow down a path to the exit. The maze is set, but the starting point is random. 
 
 # How to run the RL program
+To run this program, compile and run from main.py 
+
+# Pre-Reqs for the RL 
+matplotlib numpy tensorflow keras 
+must run on python 3.8 or earlier 
