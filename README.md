@@ -25,5 +25,5 @@ Our reinforcement learning algorithm initially has all actions at a value of zer
 To run this program, compile and run from main.py 
 
 # Pre-Reqs for the RL 
-matplotlib numpy tensorflow keras 
-must run on python 3.8 or earlier 
+matplotlib, numpy, tensorflow, keras.
+Must run on python 3.8 or earlier 
